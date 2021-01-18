@@ -30,3 +30,7 @@ jobs:
         if: ${{ github.event.tag_name }}
         run: |
           echo "DEPLOY_VERSION=${{ github.event.tag_name }}" >> ${GITHUB_ENV}
+
+      - name: Echo the results
+        run: |
+          echo ${{ env.DEPLOY_VERSION }}
