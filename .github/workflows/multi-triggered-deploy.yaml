@@ -18,10 +18,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Temp echo the event
-        run: |
-          echo ${{ github.event }}
-
       - name: Map Manual Variables to Environment
         if: ${{  github.event.inputs.version }}
         run: |
