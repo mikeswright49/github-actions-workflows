@@ -5,7 +5,7 @@ name: NPM Publish
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -31,3 +31,24 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: |
           yarn install
+
+      - name: yarn build # pretend we're doing an NPM publish
+        run: |
+          yarn run build
+
+      - name: Get Next Version
+        id: get_next_version
+        run: |
+          run: yarn ts-node src/actions/get-next-version.ts
+        env:
+          TOKEN: ${{ secrets.GITHUB_COMMIT_TOKEN }}
+          VERSION_CHANGE: "PATCH"
+
+      - name: Publish the changes
+        id: get-next-version
+        run: |
+          run: yarn ts-node src/actions/package-version-bump.ts
+        env:
+          TOKEN: ${{ secrets.GITHUB_COMMIT_TOKEN }}
+          NEXT_VERSION: ${{steps.get_next_version.outputs.next_version}}
+          CREATE_GIT_COMMIT: true

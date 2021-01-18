@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/mikeswright49/github-actions-workflows/issues"
   },
-  "homepage": "https://github.com/mikeswright49/github-actions-workflows#readme"
+  "homepage": "https://github.com/mikeswright49/github-actions-workflows#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.21",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
 }
