@@ -11,7 +11,8 @@ on:
         description: "The version to be deployed"
         required: true
   create:
-    types: [tag]
+    tags:
+      - "*"
 
 jobs:
   deploy:
