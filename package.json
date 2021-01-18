@@ -1,0 +1,20 @@
+{
+  "name": "github-actions-workflows",
+  "version": "1.0.0",
+  "description": "Demo project for testing various workflows",
+  "main": "src/hello-world.js",
+  "scripts": {
+    "test": "echo 'test: ' && node src/hello-world.js",
+    "build": "echo 'build: ' && node src/hello-world.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeswright49/github-actions-workflows.git"
+  },
+  "author": "mikeswright49",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikeswright49/github-actions-workflows/issues"
+  },
+  "homepage": "https://github.com/mikeswright49/github-actions-workflows#readme"
+}

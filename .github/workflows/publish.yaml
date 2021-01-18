@@ -1,0 +1,33 @@
+# NPM Publish
+# This action will on commit to master, publish the latest version to github packages
+# It leverages the latest commit tag to determine the version to publish.
+name: NPM Publish
+on:
+  push:
+    branches:
+      - main
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with: ${{ secrets.GITHUB_COMMIT_TOKEN }}
+
+      - name: yarn-cache
+        uses: actions/cache@v1
+        id: yarn-cache
+        env:
+          cache-name: npm-cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.18.0
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: yarn install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: |
+          yarn install

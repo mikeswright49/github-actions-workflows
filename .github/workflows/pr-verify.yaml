@@ -1,0 +1,39 @@
+# PR CI
+# This configuration is used to run through the CI steps of a given project
+name: PR CI
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: yarn-cache
+        uses: actions/cache@v1
+        id: yarn-cache
+        env:
+          cache-name: npm-cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.18.0
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: yarn install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: |
+          yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_COMMIT_TOKEN }}
+
+      - name: Run the unit tests
+        run: yarn run test
+
+      - name: Build the project
+        run: yarn run build
