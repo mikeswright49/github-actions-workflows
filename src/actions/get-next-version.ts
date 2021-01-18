@@ -8,7 +8,7 @@ import { getLatestVersion } from "./get-latest-version";
  * If neither are found will bump the patch 1.2.3 => becomes 1.2.4
  * @param currentVersion The current version to work off of
  */
-const {VERSION_CHANGE} = process.env
+const { VERSION_CHANGE } = process.env;
 
 export function getNextVersion(): void {
   let nextVersion: string;
@@ -27,7 +27,7 @@ export function getNextVersion(): void {
         patch = 0;
         break;
 
-      case VersionChange.Patch:
+      default:
         patch++;
         break;
     }
@@ -37,3 +37,4 @@ export function getNextVersion(): void {
   }
   console.log(`::set-output name=next_version::${nextVersion}`);
 }
+getNextVersion();

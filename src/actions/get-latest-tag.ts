@@ -21,7 +21,6 @@ export function getLatestTag(): string {
     return latestTag;
   } catch (e) {
     console.log("Unable to retrieve tags");
-    console.error(e);
-    process.exit(1);
+    return "0.0.0";
   }
 }
