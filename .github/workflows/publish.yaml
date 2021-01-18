@@ -6,12 +6,15 @@ on:
   push:
     branches:
       - master
+    paths-ignore: # Don't trigger on files that are updated by the CI
+      - package.json
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with: ${{ secrets.GITHUB_COMMIT_TOKEN }}
+        with:
+          token: ${{ secrets.GITHUB_COMMIT_TOKEN }} # checkout with PAT so that we can create commits dynamically
 
       - name: yarn-cache
         uses: actions/cache@v1
