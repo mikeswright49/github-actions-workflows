@@ -41,16 +41,14 @@ jobs:
 
       - name: Get Next Version
         id: get_next_version
-        run: |
-          run: yarn ts-node src/actions/get-next-version.ts
+        run: yarn ts-node src/actions/get-next-version.ts
         env:
           TOKEN: ${{ secrets.ADMIN_PAT_TOKEN }}
           VERSION_CHANGE: "PATCH"
 
       - name: Publish the changes
         id: get-next-version
-        run: |
-          run: yarn ts-node src/actions/package-version-bump.ts
+        run: yarn ts-node src/actions/package-version-bump.ts
         env:
           TOKEN: ${{ secrets.ADMIN_PAT_TOKEN }}
           NEXT_VERSION: ${{steps.get_next_version.outputs.next_version}}
