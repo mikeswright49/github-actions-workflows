@@ -30,7 +30,7 @@ jobs:
         run: |
           yarn install
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_COMMIT_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.ADMIN_PAT_TOKEN }}
 
       - name: Run the unit tests
         run: yarn run test
