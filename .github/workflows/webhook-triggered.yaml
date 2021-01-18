@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Echo the variables
-      - run: 'echo "field: ${{ github.event.client_payload.foo }}"'
-      - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'
+      - run: |
+          'echo "field: ${{ github.event.client_payload.foo }}"'
+          'echo "payload: ${{ toJson(github.event.client_payload) }}"'

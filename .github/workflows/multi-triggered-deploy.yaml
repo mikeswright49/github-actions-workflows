@@ -17,18 +17,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Temp echo the event
-      run: |
-        echo ${{ github.event }}
-    - name: Map Manual Variables to Environment
-      if: ${{  github.event.inputs.version }}
-      run: |
-        echo "DEPLOY_VERSION=${{ github.event.inputs.version }}" >> ${GITHUB_ENV}
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.ADMIN_PAT_TOKEN }}
-        - name: Map Manual Variables to Environment
-    if: ${{ github.event.tag_name }}
-      run: |
-        echo "DEPLOY_VERSION=${{ github.event.tag_name }}" >> ${GITHUB_ENV}
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.ADMIN_PAT_TOKEN }}
+      - name: Temp echo the event
+        run: |
+          echo ${{ github.event }}
+
+      - name: Map Manual Variables to Environment
+        if: ${{  github.event.inputs.version }}
+        run: |
+          echo "DEPLOY_VERSION=${{ github.event.inputs.version }}" >> ${GITHUB_ENV}
+
+      - name: Map Release Variables to Environment
+        if: ${{ github.event.tag_name }}
+        run: |
+          echo "DEPLOY_VERSION=${{ github.event.tag_name }}" >> ${GITHUB_ENV}
