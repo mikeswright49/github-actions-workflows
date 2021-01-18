@@ -1,0 +1,22 @@
+#####
+# Template to webhook trigger a workflow
+# https://docs.github.com/en/actions/reference/events-that-trigger-workflows#example-1
+# types is based on the event_type property set in the cUrl param
+# curl -H "Authorization: token :token" \
+#    -H 'Accept: application/vnd.github.everest-preview+json' \
+#    "https://api.github.com/repos/mikeswright49/github-actions-workflows/dispatches" \
+#    -d '{"event_type": "awesomeness", "client_payload": {"foo": "bar"}}'
+####
+name: webhook-triggered
+on:
+  repository_dispatch:
+    types:
+      - awesomeness
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Echo the variables
+      - run: 'echo "field: ${{ github.event.client_payload.foo }}"'
+      - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'

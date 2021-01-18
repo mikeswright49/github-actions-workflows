@@ -1,0 +1,23 @@
+#####
+# Template to manually trigger an action
+####
+name: manually-triggered
+on:
+  workflow_dispatch:
+    inputs:
+      required_var:
+        description: "A required variable to be used later"
+        required: true
+        default: "a-variable"
+      optional_var:
+        description: "An optional variable to be used later"
+        required: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Echo the variables
+        run: |
+          echo ${{  github.event.inputs.required_var }}
+          echo ${{  github.event.inputs.optional_var }}
