@@ -10,8 +10,8 @@ on:
       version:
         description: "The version to be deployed"
         required: true
-  release:
-    types: [published]
+  create:
+    types: [tag]
 
 jobs:
   deploy:
@@ -27,9 +27,9 @@ jobs:
           echo "DEPLOY_VERSION=${{ github.event.inputs.version }}" >> ${GITHUB_ENV}
 
       - name: Map Release Variables to Environment
-        if: ${{ github.event.tag_name }}
+        if: ${{ github.event.ref }}
         run: |
-          echo "DEPLOY_VERSION=${{ github.event.tag_name }}" >> ${GITHUB_ENV}
+          echo "DEPLOY_VERSION=${{ github.event.ref }}" >> ${GITHUB_ENV}
 
       - name: Echo the results
         run: |
