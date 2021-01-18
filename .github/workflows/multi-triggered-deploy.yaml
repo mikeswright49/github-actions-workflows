@@ -1,0 +1,33 @@
+###
+# This workflow represents a possibly auto triggered deploy, and a manually triggered deploy
+# It will look at a release based tag, and a manually entered version for deployment
+###
+
+name: Multi-triggered Deploy
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "The version to be deployed"
+        required: true
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    - name: Temp echo the event
+      run: |
+        echo ${{ github.event }}
+    - name: Map Manual Variables to Environment
+      if: ${{  github.event.inputs.version }}
+      run: |
+        echo "DEPLOY_VERSION=${{  github.event.inputs.version }}" >> ${GITHUB_ENV}
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.ADMIN_PAT_TOKEN }}
+        - name: Map Manual Variables to Environment
+    if: ${{ github.event.tag_name }}
+      run: |
+        echo "DEPLOY_VERSION=${{  github.event.tag_name }}" >> ${GITHUB_ENV}
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.ADMIN_PAT_TOKEN }}
