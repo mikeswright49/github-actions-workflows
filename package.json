@@ -1,25 +1,25 @@
 {
-  "name": "github-actions-workflows",
-  "version": "1.0.0",
-  "description": "Demo project for testing various workflows",
-  "main": "src/hello-world.js",
-  "scripts": {
-    "test": "echo 'test: ' && yarn ts-node src/hello-world.ts",
-    "build": "echo 'build: ' && yarn ts-node  src/hello-world.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mikeswright49/github-actions-workflows.git"
-  },
-  "author": "mikeswright49",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mikeswright49/github-actions-workflows/issues"
-  },
-  "homepage": "https://github.com/mikeswright49/github-actions-workflows#readme",
-  "devDependencies": {
-    "@types/node": "^14.14.21",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.3"
-  }
+    "name": "github-actions-workflows",
+    "version": "1.0.1",
+    "description": "Demo project for testing various workflows",
+    "main": "src/hello-world.js",
+    "scripts": {
+        "test": "echo 'test: ' && yarn ts-node src/hello-world.ts",
+        "build": "echo 'build: ' && yarn ts-node  src/hello-world.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mikeswright49/github-actions-workflows.git"
+    },
+    "author": "mikeswright49",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mikeswright49/github-actions-workflows/issues"
+    },
+    "homepage": "https://github.com/mikeswright49/github-actions-workflows#readme",
+    "devDependencies": {
+        "@types/node": "^14.14.21",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.1.3"
+    }
 }
