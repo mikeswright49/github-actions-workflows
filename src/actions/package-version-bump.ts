@@ -32,3 +32,5 @@ export function createPackageCommit(): void {
     process.exit(1);
   }
 }
+
+createPackageCommit();

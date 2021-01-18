@@ -48,7 +48,10 @@ jobs:
 
       - name: Publish the changes
         id: get-next-version
-        run: yarn ts-node src/actions/package-version-bump.ts
+        run: |
+          yarn ts-node src/actions/package-version-bump.ts
+          git tag ${{ env.NEXT_VERSION }}
+          git push origin ${{ env.NEXT_VERSION }} -f
         env:
           TOKEN: ${{ secrets.ADMIN_PAT_TOKEN }}
           NEXT_VERSION: ${{steps.get_next_version.outputs.next_version}}
