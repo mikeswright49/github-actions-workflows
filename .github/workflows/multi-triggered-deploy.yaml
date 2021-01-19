@@ -26,8 +26,8 @@ jobs:
       - name: Map Release Variables to Environment
         if: ${{ github.event.ref }}
         run: |
-          echo "TEMP_VAR=${{ github.event.ref }}"
-          echo "DEPLOY_VERSION=${TEMP_VAR##*'/'}" >> ${GITHUB_ENV}
+          TEMP_VAR=${{ github.event.ref }}
+          echo "DEPLOY_VERSION=${TEMP_VAR##*/}" >> ${GITHUB_ENV}
           echo ${{ env.DEPLOY_VERSION }}
 
       - uses: actions/checkout@v2
