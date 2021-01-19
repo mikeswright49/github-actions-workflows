@@ -1,6 +1,6 @@
 {
     "name": "github-actions-workflows",
-    "version": "1.0.22",
+    "version": "1.0.23",
     "description": "Demo project for testing various workflows",
     "main": "src/hello-world.js",
     "scripts": {
