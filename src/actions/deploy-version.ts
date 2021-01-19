@@ -6,17 +6,20 @@ export async function DeployVersion() {
     process.exit(1);
   }
 
-  console.log("Starting Deployment of Version:" + DEPLOY_VERSION);
+  console.log(`Starting Deployment of Version: ${DEPLOY_VERSION}`);
 
   const deploymentConfig = {
     environment: DEPLOY_ENVIRONMENT || "preprod",
     ref: DEPLOY_VERSION,
     auto_merge: false
   };
+
   const deployment = await postRequest("deployments", deploymentConfig);
+
   if (!deployment.id) {
     console.log("Failed to generate deployment");
     console.log(deployment.message);
+    process.exit(1);
   }
 
   console.log(`Deployment Created: ${deployment.id}`);
