@@ -27,7 +27,7 @@ jobs:
         if: ${{ github.event.ref }}
         run: |
           echo "TEMP_VAR=${{ github.event.ref }}"
-          echo "DEPLOY_VERSION=${TEMP_VAR##*/}" >> ${GITHUB_ENV} # // ref/tags/1.2.3 => 1.2.3
+          echo "DEPLOY_VERSION=${TEMP_VAR##*/}" >> ${GITHUB_ENV}
           echo ${{ env.DEPLOY_VERSION }}
 
       - uses: actions/checkout@v2
