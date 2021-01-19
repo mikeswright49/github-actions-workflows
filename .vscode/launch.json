@@ -1,0 +1,20 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Deploy Version",
+      "program": "${workspaceFolder}/node_modules/.bin/ts-node",
+      "args": ["src/actions/deploy-version.ts"],
+      "env": {
+        "DEPLOY_VERSION": "1.0.10",
+        "DEPLOY_ENVIRONMENT": "preprod",
+        "TOKEN": "a-pat"
+      }
+    }
+  ]
+}
