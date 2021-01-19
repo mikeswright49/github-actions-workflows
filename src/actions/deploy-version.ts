@@ -14,14 +14,19 @@ export async function DeployVersion() {
     auto_merge: false
   };
   const deployment = await postRequest("deployments", deploymentConfig);
+  if (!deployment.id) {
+    console.log("Failed to generate deployment");
+    console.log(deployment.message);
+  }
+
   console.log(`Deployment Created: ${deployment.id}`);
 
   try {
     await Promise.resolve(); // do something doesn't really matter
-    console.log("Deployment Success");
     await postRequest(`deployments/${deployment.id}/statuses`, {
       state: "success"
     });
+    console.log("Deployment Success");
   } catch (e) {
     console.log("Deployment Failed");
     postRequest(`deployments/${deployment.id}/statuses`, {
