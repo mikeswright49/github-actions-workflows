@@ -11,7 +11,8 @@ export async function DeployVersion() {
   const deploymentConfig = {
     environment: DEPLOY_ENVIRONMENT || "preprod",
     ref: DEPLOY_VERSION,
-    auto_merge: false
+    auto_merge: false,
+    required_contexts: []
   };
 
   const deployment = await postRequest("deployments", deploymentConfig);

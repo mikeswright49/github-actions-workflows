@@ -11,8 +11,8 @@
       "program": "${workspaceFolder}/node_modules/.bin/ts-node",
       "args": ["src/actions/deploy-version.ts"],
       "env": {
-        "DEPLOY_VERSION": "1.0.20",
-        "TOKEN": "3f57a4eafd541d9a381662b2aacf8c59c1ecb456"
+        "DEPLOY_VERSION": "1.0.23",
+        "TOKEN": "21181e2296cf1751f33e3ee8eaafc5082cc9b89c"
       }
     }
   ]
