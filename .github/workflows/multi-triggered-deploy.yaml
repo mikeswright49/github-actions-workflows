@@ -28,6 +28,29 @@ jobs:
         run: |
           echo "DEPLOY_VERSION=${{ github.event.ref }}" >> ${GITHUB_ENV}
 
+      - uses: actions/checkout@v2
+
+      - name: yarn-cache
+        uses: actions/cache@v1
+        id: yarn-cache
+        env:
+          cache-name: npm-cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.18.0
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: yarn install
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: |
+          yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.ADMIN_PAT_TOKEN }}
+
       - name: Deploy the version
         run: |
           yarn ts-node src/actions/deploy-version.ts
