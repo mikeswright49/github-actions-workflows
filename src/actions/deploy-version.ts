@@ -2,6 +2,10 @@ import fetch from "node-fetch";
 
 const { DEPLOY_VERSION, TOKEN, DEPLOY_ENVIRONMENT } = process.env;
 export async function DeployVersion() {
+  if (!DEPLOY_VERSION) {
+    process.exit(1);
+  }
+
   console.log("Starting Deployment of Version:" + DEPLOY_VERSION);
 
   const deploymentConfig = {
